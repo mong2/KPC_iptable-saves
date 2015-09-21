@@ -31,7 +31,8 @@ def existing_groups(jsondata):
 # Read in .ports file.
 def read_ports(ports_file):
     myports = []
-    for line in ports_file:
+    text_file  = open(ports_file, 'r')
+    for line in text_file:
         tokens = re.split(r"[' ']+", line)
         myports.append((tokens[0], tokens[1]))
 

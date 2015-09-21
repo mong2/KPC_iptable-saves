@@ -10,12 +10,13 @@ import create_policy
 # Get Iptables
 #files = zip((glob.glob("*.iptables")), (glob.glob("*.saves")))
 files = glob.glob("*.saves")
-ports_file = open("test.ports", 'r')
+ports_files = glob.glob("*.ports")
 
-portlist = kpc.read_ports(ports_file)
+for ports_file in ports_files:
+    portlist = kpc.read_ports(ports_file)
 
 for s in files:
-    print "START" + s
+    print "START: " + s
     mylist_input_final, mylist_output_final, save_forward = read_iptables.read_IptableSave(s)
 
     existing_IP = kpc.existing_IPzone(api.get_IPzones())
