@@ -92,14 +92,16 @@ def create_networkService(mylist_input, mylist_output,existing_Service, portlist
             if protocol == "UDP" or protocol == "TCP" or protocol == "ICMP":
                 if (port,protocol) not in existing_Service:
                     for element in portlist:
+                        dict1 = {'name': protocol + "/" + port, 'protocol': protocol.lower(), 'port': port}
                         if port == element[0] and (protocol.lower() in element[1]):
                             name_portlist = re.sub('/.+$', '', element[1]).strip()
                             protocol_portlist = re.sub('^.+/', '', element[1]).strip()
                             if name_portlist == "-":
                                 name_portlist = protocol_portlist + "/" + element[0]
                             dict1 = {'name': name_portlist, 'protocol': protocol_portlist, 'port': port}
-                        elif port != element[0] and protocol.lower() not in element[1]:
-                            dict1 = {'name': protocol + "/" + port, 'protocol': protocol.lower(), 'port': port}
+                            print dict1
+                            break
+
                     if dict1 not in service and dict1 != None:
                         service.append(dict1)
 
@@ -108,14 +110,14 @@ def create_networkService(mylist_input, mylist_output,existing_Service, portlist
             if protocol == "UDP" or protocol == "TCP" or protocol == "ICMP":
                 if (port,protocol) not in existing_Service:
                     for element in portlist:
+                        dict1 = {'name': protocol + "/" + port, 'protocol': protocol.lower(), 'port': port}
                         if port == element[0] and (protocol.lower() in element[1]):
                             name_portlist = re.sub('/.+$', '', element[1]).strip()
                             protocol_portlist = re.sub('^.+/', '', element[1]).strip()
                             if name_portlist == "-":
                                 name_portlist = protocol_portlist + "/" + element[0]
                             dict1 = {'name': name_portlist, 'protocol': protocol_portlist, 'port': port}
-                        elif port != element[0] and protocol.lower() not in element[1]:
-                            dict1 = {'name': protocol + "/" + port, 'protocol': protocol.lower(), 'port': port}
+                            break
                     if dict1 not in service and dict1 != None:
                         service.append(dict1)
     return service

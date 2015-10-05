@@ -14,6 +14,7 @@ ports_files = glob.glob("*.ports")
 
 for ports_file in ports_files:
     portlist = kpc.read_ports(ports_file)
+    print portlist
 
 for s in files:
     print "START: " + s
